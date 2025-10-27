@@ -1,5 +1,3 @@
-version: '3.8'
-
 # This Docker Compose file sets up the development environment for the FLATS UG application.
 # It consists of three main services: a frontend React app, a backend Node.js API, and a MySQL database.
 #
