@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLATS UG Driver Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'driver-primary': '#1A3622', // Darker Green for Driver App general background/accents
+            'driver-secondary': '#6A8A2B', // Complementary Green for highlights
+            'driver-accent': '#F5F5DC', // Light Beige/Cream for cards, secondary text
+            'driver-bg-light': '#FFFFFF', // Main background for content areas
+            'status-online': '#34D399', // Emerald 500 for Online status
+            'status-offline': '#F87171', // Red 400 for Offline status
+            'driver-theme-primary': '#2E7D32', // A distinct primary color for UI elements like active nav icons
+          },
+           boxShadow: {
+            'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.1)',
+          },
+          animation: {
+            fadeIn: 'fadeIn 0.3s ease-out forwards',
+            bounce: 'bounce 1s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0, transform: 'scale(0.95)' },
+              '100%': { opacity: 1, transform: 'scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.6.0"
+  }
+}
+</script>
+</head>
+<body class="bg-gray-100">
+  <div id="driver-root"></div>
+  <script type="module" src="/driver_index.tsx"></script>
+</body>
+</html>

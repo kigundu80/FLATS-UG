@@ -1,0 +1,7 @@
+
+{
+  "name": "FLATS UG Driver App",
+  "description": "Application for FLATS UG drivers to manage rides, availability, and earnings.",
+  "requestFramePermissions": ["geolocation"],
+  "prompt": "Create a driver app with a dashboard showing availability toggle, current status, a map view placeholder, and quick stats for earnings."
+}

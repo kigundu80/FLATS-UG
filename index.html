@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLATS UG Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'primary': '#16A34A', // green-600
+            'primary-dark': '#15803D', // green-700
+            'secondary': '#FBCFE8', // pink-200
+            'surface': '#FFFFFF',
+            'background': '#F3F4F6', // gray-100
+            'text-primary': '#1F2937', // gray-800
+            'text-secondary': '#4B5563', // gray-600
+            'danger': '#DC2626', // red-600
+
+            // Driver Theme
+            'driver-primary': '#2563EB', // blue-600
+            'driver-primary-dark': '#1D4ED8', // blue-700
+            
+            // Status & old names for compatibility
+            'status-online': '#16A34A',
+            'status-offline': '#EF4444', // red-500
+            'brand-primary': '#16A34A', 
+            'driver-theme-primary': '#2563EB',
+          },
+          boxShadow: {
+            'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.05), 0 -2px 4px -2px rgba(0, 0, 0, 0.05)',
+          },
+          animation: {
+            fadeIn: 'fadeIn 0.3s ease-out forwards',
+            bounce: 'bounce 1s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0, transform: 'translateY(10px) scale(0.98)' },
+              '100%': { opacity: 1, transform: 'translateY(0) scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.6.0",
+    "leaflet": "https://esm.sh/leaflet@1.9.4",
+    "react-leaflet": "https://esm.sh/react-leaflet@4.2.1",
+    "react-dom/server": "https://esm.sh/react-dom@^19.1.0/server"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-background">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

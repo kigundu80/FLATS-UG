@@ -1,0 +1,8 @@
+{
+  "name": "FLATS UG Platform (User & Driver)",
+  "description": "A comprehensive transportation and services platform for FLATS UG, for both users and drivers. Features ride hailing, service booking, AI-powered travel insights, and driver ride management.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "prompt": ""
+}
