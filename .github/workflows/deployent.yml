@@ -1,0 +1,70 @@
+
+# .github/workflows/deploy.yml
+name: CI/CD Pipeline to GHCR
+
+# Controls when the workflow will run
+on:
+  push:
+    # Triggers the workflow when pushing to the main branch
+    branches: [ "main" ]
+  
+  # Allows manual running from the Actions tab
+  workflow_dispatch:
+
+# Defines the environment variable used for GitHub Packages registry
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }} # Uses 'username/repo-name' as the image name
+
+jobs:
+  build-and-push:
+    # Use a standard Linux runner
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to push images to GitHub Packages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 1. Log in to the GitHub Container Registry (GHCR)
+      - name: Log in to the Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          # GITHUB_TOKEN is a secret token provided by GitHub
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # 2. Get the current commit SHA to use as the image tag
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=long,prefix=
+
+      # 3. Build and push the Backend image
+      - name: Build and push Backend Docker image
+        uses: docker/build-and-push-action@v5
+        with:
+          context: ./backend # Path to your backend Dockerfile
+          file: ./backend/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}-backend
+          labels: ${{ steps.meta.outputs.labels }}
+
+      # 4. Build and push the Frontend image
+      - name: Build and push Frontend Docker image
+        uses: docker/build-and-push-action@v5
+        with:
+          context: . # Context is the repository root
+          file: Dockerfile.frontend # Path to your frontend Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}-frontend
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # Note: A real deployment job (e.g., to AWS, Azure, Render) would follow this job.
+  # This second job would pull the images from GHCR and start the containers remotely.
